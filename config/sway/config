@@ -1,0 +1,284 @@
+# Default config for sway
+#
+# Copy this to ~/.config/sway/config and edit it to your liking.
+#
+# Read `man 5 sway` for a complete reference.
+
+### Variables
+# Logo key. Use Mod1 for Alt.
+set $mod Mod4
+set $left h
+set $down j
+set $up k
+set $right l
+set $term alacritty
+set $menu wofi --show run
+set $mon1 VGA-1
+set $mon2 HDMI-A-1
+set $gnome-schema org.gnome.desktop.interface
+set $ws1a "1a"
+set $ws2a "2a"
+set $ws3a "3a"
+set $ws4a "4a"
+set $ws5a "5a"
+set $ws6a "6a"
+set $ws7a "7a"
+set $ws8a "8a"
+set $ws1b "1b"
+set $ws2b "2b"
+set $ws3b "3b"
+set $ws4b "4b"
+set $ws5b "5b"
+#
+#Output Configuration
+output $mon1 {
+	resolution 1280x1024@60Hz position 0,0
+}
+output $mon2 {
+	resolution 3840x2160@30Hz position 1280,0
+	scale 2
+}
+output * bg /home/anthony/.config/sway/wallpaper.jpg fill
+#Input keyboard
+input * {
+        xkb_layout fr
+        xkb_variant ,nodeadkeys
+        xkb_options grp:alt_shift_toggle
+        }
+#setborder
+#
+default_border none
+gaps inner 28
+gaps outer -8
+border_images.focused ~/.config/sway/borders/focused.png
+border_images.focused_inactive ~/.config/sway/borders/focused_inactive.png
+border_images.unfocused ~/.config/sway/borders/unfocused.png
+border_images.urgent ~/.config/sway/borders/urgent.png
+### Key bindings
+#
+#Gnome Shell Themes
+#
+exec_always {
+    gsettings set $gnome-schema gtk-theme "Nordic"
+    gsettings set $gnome-schema icon-theme "Papirus"
+}
+# Basics:
+#
+    # Start a terminal
+    bindsym $mod+Return exec $term
+
+    # Kill focused window
+    bindsym $mod+q kill
+
+    # Start your launcher
+    bindsym $mod+m exec $menu
+
+    # Drag floating windows by holding down $mod and left mouse button.
+    # Resize them with right mouse button + $mod.
+    # Despite the name, also works for non-floating windows.
+    # Change normal to inverse to use left mouse button for resizing and right
+    # mouse button for dragging.
+    floating_modifier $mod normal
+
+    # Reload the configuration file
+    bindsym $mod+Shift+c reload
+
+    # Exit sway (logs you out of your Wayland session)
+    bindsym $mod+Shift+e exec swaynag -t warning -m 'Hey m8 you really want surrend ?' -b 'yes m8 im fkn scrub lmao' 'swaymsg exit'
+#
+# Moving around:
+#
+    # Move your focus around
+    bindsym $mod+$left focus left
+    bindsym $mod+$down focus down
+    bindsym $mod+$up focus up
+    bindsym $mod+$right focus right
+    # Or use $mod+[up|down|left|right]
+    bindsym $mod+Left focus left
+    bindsym $mod+Down focus down
+    bindsym $mod+Up focus up
+    bindsym $mod+Right focus right
+
+    # Move the focused window with the same, but add Shift
+    bindsym $mod+Shift+$left move left
+    bindsym $mod+Shift+$down move down
+    bindsym $mod+Shift+$up move up
+    bindsym $mod+Shift+$right move right
+    # Ditto, with arrow keys
+    bindsym $mod+Shift+Left move left
+    bindsym $mod+Shift+Down move down
+    bindsym $mod+Shift+Up move up
+    bindsym $mod+Shift+Right move right
+#
+# Workspaces:
+#
+   #Workspace Definition
+    workspace $ws1a output $mon1
+    workspace $ws2a output $mon1
+    workspace $ws3a output $mon1
+    workspace $ws4a output $mon1
+    workspace $ws5a output $mon1
+    workspace $ws6a output $mon1
+    workspace $ws7a output $mon1
+    workspace $ws8a output $mon1
+    workspace 9a output $mon1
+    workspace 0a output $mon1
+
+    workspace $ws1b output $mon2
+    workspace $ws2b output $mon2
+    workspace $ws3b output $mon2
+    workspace $ws4b output $mon2
+    workspace $ws5b output $mon2
+    workspace 6b output $mon2
+    workspace 7b output $mon2
+    workspace 8b output $mon2
+    workspace 9b output $mon2
+    workspace 0b output $mon2
+
+    # Switch to workspace
+    bindsym $mod+F1 exec ws1a.sh
+    bindsym $mod+F2 exec ws2a.sh
+    bindsym $mod+F3 exec ws3a.sh
+    bindsym $mod+F4 exec ws4a.sh
+    bindsym $mod+F5 exec ws5a.sh
+    bindsym $mod+F6 exec ws6a.sh
+    bindsym $mod+F7 exec ws7a.sh
+    bindsym $mod+F8 exec ws8a.sh
+    bindsym $mod+F9 workspace 9a
+    bindsym $mod+F10 workspace 10a
+
+    bindsym $mod+Ctrl+F1 exec ws1b.sh
+    bindsym $mod+Ctrl+F2 exec ws2b.sh
+    bindsym $mod+Ctrl+F3 exec ws3b.sh
+    bindsym $mod+Ctrl+F4 exec ws4b.sh
+    bindsym $mod+Ctrl+F5 exec ws5b.sh
+    bindsym $mod+Ctrl+F6 workspace 6b
+    bindsym $mod+Ctrl+F7 workspace 7b
+    bindsym $mod+Ctrl+F8 workspace 8b
+    bindsym $mod+Ctrl+F9 workspace 9b
+    bindsym $mod+Ctrl+F10 workspace 10b
+
+    # Move focused container to workspace
+    bindsym $mod+Shift+F1 move container to workspace $ws1a
+    bindsym $mod+Shift+F2 move container to workspace $ws2a
+    bindsym $mod+Shift+F3 move container to workspace $ws3a
+    bindsym $mod+Shift+F4 move container to workspace $ws4a
+    bindsym $mod+Shift+F5 move container to workspace $ws5a
+    bindsym $mod+Shift+F6 move container to workspace $ws6a
+    bindsym $mod+Shift+F7 move container to workspace $ws7a
+    bindsym $mod+Shift+F8 move container to workspace $ws8a
+    bindsym $mod+Shift+F9 move container to workspace 9a
+    bindsym $mod+Shift+F10 move container to workspace 10a
+
+    bindsym $mod+Shift+Ctrl+F1 move container to workspace $ws1b
+    bindsym $mod+Shift+Ctrl+F2 move container to workspace $ws2b
+    bindsym $mod+Shift+Ctrl+F3 move container to workspace $ws3b
+    bindsym $mod+Shift+Ctrl+F4 move container to workspace $ws4b
+    bindsym $mod+Shift+Ctrl+F5 move container to workspace $ws5b
+    bindsym $mod+Shift+Ctrl+F6 move container to workspace 6b
+    bindsym $mod+Shift+Ctrl+F7 move container to workspace 7b
+    bindsym $mod+Shift+Ctrl+F8 move container to workspace 8b
+    bindsym $mod+Shift+Ctrl+F9 move container to workspace 9b
+    bindsym $mod+Shift+Ctrl+F10 move container to workspace 10b
+    # Note: workspaces can have any name you want, not just numbers.
+    # We just use 1-10 as the default.
+#
+# Layout stuff:
+#
+    # You can "split" the current object of your focus with
+    # $mod+b or $mod+v, for horizontal and vertical splits
+    # respectively.
+    bindsym $mod+b splith
+    bindsym $mod+v splitv
+
+    # Switch the current container between different layout styles
+    bindsym $mod+s layout stacking
+    bindsym $mod+w layout tabbed
+    bindsym $mod+e layout toggle split
+
+    # Make the current focus fullscreen
+    bindsym $mod+f fullscreen
+
+    # Toggle the current focus between tiling and floating mode
+    bindsym $mod+Shift+space floating toggle
+
+    # Swap focus between the tiling area and the floating area
+    bindsym $mod+space focus mode_toggle
+
+    # Move focus to the parent container
+    bindsym $mod+a focus parent
+#
+# Scratchpad:
+#
+    # Sway has a "scratchpad", which is a bag of holding for windows.
+    # You can send windows there and get them back later.
+
+    # Move the currently focused window to the scratchpad
+    bindsym $mod+Shift+minus move scratchpad
+
+    # Show the next scratchpad window or hide the focused scratchpad window.
+    # If there are multiple scratchpad windows, this command cycles through them.
+    bindsym $mod+minus scratchpad show
+#
+# Resizing containers:
+#
+mode "resize" {
+    # left will shrink the containers width
+    # right will grow the containers width
+    # up will shrink the containers height
+    # down will grow the containers height
+    bindsym $left resize shrink width 10px
+    bindsym $down resize grow height 10px
+    bindsym $up resize shrink height 10px
+    bindsym $right resize grow width 10px
+
+    # Ditto, with arrow keys
+    bindsym Left resize shrink width 10px
+    bindsym Down resize grow height 10px
+    bindsym Up resize shrink height 10px
+    bindsym Right resize grow width 10px
+
+    # Return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+#
+#take screenshot
+#
+bindsym Print exec grim screenshot.png
+#
+#Notification
+#
+bindsym $mod+n exec "makoctl dismiss"
+bindsym $mod+Shift+n exec "makoctl dismiss -a"
+#
+# Status Bar:
+#
+# Read `man 5 sway-bar` for more information about this section.
+#bar {
+#    position top
+
+    # When the status_command prints a new line to stdout, swaybar updates.
+    # The default just shows the current date and time.
+#    status_command while date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done
+
+ #   colors {
+  #      statusline #ffffff
+   #     background #323232
+    #    inactive_workspace #32323200 #32323200 #5c5c5c
+    #}
+#}
+#
+#Auto Floating 
+for_window [app_id="floating"] floating enable
+for_window [app_id="pavucontrol"] floating enable
+#
+#Auto-executions
+#
+exec waybar
+exec mako
+exec lightcord
+assign [class="^lightcord"] $ws3a
+include /etc/sway/config.d/*

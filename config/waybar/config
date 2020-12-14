@@ -1,0 +1,138 @@
+[{
+    // Basic config
+    "layer": "top",
+    "position": "top",
+    "height": 25,
+    "output": "VGA-1",
+    "margin-top": 5,
+    "margin-bottom": -10,
+    "margin-right": 10,
+    "margin-left": 10,
+
+    // Modules
+    "modules-left": ["clock"],
+    "modules-center": ["sway/workspaces"],
+    "modules-right": ["pulseaudio", "custom/d", "cpu", "custom/d", "memory", "custom/d", "temperature"],
+
+    // Modules configuration
+    "custom/d": {
+        "format": "|",
+        "tooltip": false
+    },
+    "sway/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": false,
+        "format": "{icon}",
+        "format-icons": {
+            "1a": "",
+            "2a": "",
+            "3a": "",
+            "4a": "",
+	    "5a": "",
+            "6a": "",
+	    "7a": "",
+	    "8a": "",
+            "urgent": "",
+            "default": ""
+        }
+    },
+    "clock": {
+        "interval": 1,
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format": "<span color=\"#88c0d0\"></span> {:%Y-%m-%d, %H:%M:%S}",
+    },
+    "pulseaudio": {
+        "format": "{icon}",
+        "format-muted": "<span color=\"#d08770\">  </span>{format_source}",
+        "format-source": "<span color=\"#88c0d0\"> </span>",
+        "format-source-muted": "<span color=\"#d08770\"> </span>",
+        "format-icons": {
+            "default": ["", ""]
+        },
+        "on-click": "pavucontrol",
+    },
+    "cpu": {
+	"interval": 5,
+	"format": " {usage}%",
+	"max-length": 10
+	},
+    "memory": {
+	"interval": 20,
+	"format": "&#xf538; {}%",
+	"max-length": 10
+	},
+
+    "temperature": {
+      "thermal-zone": 2,
+      "critical-threshold": 75,
+      "format-critical": " {temperatureC}°C",
+      "format": " {temperatureC}°C"
+      }
+}, {
+// Basic config
+    "layer": "top",
+    "position": "top",
+    "height": 30,
+    "output": "HDMI-A-1",
+    "margin-top": 5,
+    "margin-bottom": -10,
+    "margin-right": 10,
+    "margin-left": 10,
+
+// Modules configuration
+    "custom/d": {
+        "format": "|",
+        "tooltip": false
+},
+    "modules-left": ["clock"],
+    "modules-center": ["sway/workspaces"],
+"modules-right": ["pulseaudio", "custom/d", "cpu", "custom/d", "memory", "custom/d", "temperature"],
+    
+    "sway/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": false,
+        "format": "{icon}",
+        "format-icons": {
+            "1b": "",
+            "2b": "",
+	    "3b": "",
+            "4b": "",
+            "5b": "",
+            "6b": "",
+            "urgent": "",
+            "default": ""
+        }
+    },
+    "clock": {
+        "interval": 1,
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format": "<span color=\"#88c0d0\"></span> {:%Y-%m-%d, %H:%M:%S}",
+    },
+    "pulseaudio": {
+        "format": "{icon}",
+        "format-muted": "<span color=\"#d08770\">  </span>{format_source}",
+        "format-source": "<span color=\"#88c0d0\"> </span>",
+        "format-source-muted": "<span color=\"#d08770\"> </span>",
+        "format-icons": {
+            "default": ["", ""]
+        },
+        "on-click": "pavucontrol",
+    },
+    "cpu": {
+        "interval": 5,
+        "format": " {usage}%",
+        "max-length": 10
+        },
+    "memory": {
+        "interval": 20,
+        "format": "&#xf538; {}%",
+        "max-length": 10
+        },
+
+    "temperature": {
+      "thermal-zone": 2,
+      "critical-threshold": 75,
+      "format-critical": " {temperatureC}°C",
+      "format": " {temperatureC}°C"
+      }
+}]
