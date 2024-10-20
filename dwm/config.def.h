@@ -10,26 +10,26 @@ static const char *fonts[]          = "3270 Nerd Font Mono:style:regular:size=16
 static const char dmenufont[]       = "3270 Nerd Font Mono:style:regular:size=12";
 
 
-#include "tokyonight.h" /* theme color*/
+// #include "tokyonight.h" /* theme color*/
 
-static const char *colors[][3]      = {
-    /*                     fg       bg      border */
-    [SchemeNorm]       = { gray3,   black,  gray2 },
-    [SchemeSel]        = { gray4,   blue,   blue  },
-    [SchemeTitle]      = { white,   black,  black }, // active window title
-    [TabSel]           = { blue,    gray2,  black },
-    [TabNorm]          = { gray3,   black,  black },
-    [SchemeTag]        = { gray3,   black,  black },
-    [SchemeTag1]       = { blue,    black,  black },
-    [SchemeTag2]       = { red,     black,  black },
-    [SchemeTag3]       = { orange,  black,  black },
-    [SchemeTag4]       = { green,   black,  black },
-    [SchemeTag5]       = { pink,    black,  black },
-    [SchemeLayout]     = { green,   black,  black },
-    [SchemeBtnPrev]    = { green,   black,  black },
-    [SchemeBtnNext]    = { yellow,  black,  black },
-    [SchemeBtnClose]   = { red,     black,  black },
-};
+// static const char *colors[][3]      = {
+//     /*                     fg       bg      border */
+//     [SchemeNorm]       = { gray3,   black,  gray2 },
+//     [SchemeSel]        = { gray4,   blue,   blue  },
+//     [SchemeTitle]      = { white,   black,  black }, // active window title
+//     [TabSel]           = { blue,    gray2,  black },
+//     [TabNorm]          = { gray3,   black,  black },
+//     [SchemeTag]        = { gray3,   black,  black },
+//     [SchemeTag1]       = { blue,    black,  black },
+//     [SchemeTag2]       = { red,     black,  black },
+//     [SchemeTag3]       = { orange,  black,  black },
+//     [SchemeTag4]       = { green,   black,  black },
+//     [SchemeTag5]       = { pink,    black,  black },
+//     [SchemeLayout]     = { green,   black,  black },
+//     [SchemeBtnPrev]    = { green,   black,  black },
+//     [SchemeBtnNext]    = { yellow,  black,  black },
+//     [SchemeBtnClose]   = { red,     black,  black },
+// };
 
 /* tagging */
 static const char *tags[] = { "", "󰊯", "", "&" };
@@ -77,11 +77,11 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const Key keys[] = {
 
 	// brightness and audio 
-    {0,             XF86XK_AudioLowerVolume,    spawn, {.v = downvol}},
-	{0,             XF86XK_AudioMute, spawn,    {.v = mutevol }},
-	{0,             XF86XK_AudioRaiseVolume,    spawn, {.v = upvol}},
-	{0,				XF86XK_MonBrightnessUp,     spawn,	{.v = light_up}},
-	{0,				XF86XK_MonBrightnessDown,   spawn,	{.v = light_down}},
+    // {0,             XF86XK_AudioLowerVolume,    spawn, {.v = downvol}},
+	// {0,             XF86XK_AudioMute, spawn,    {.v = mutevol }},
+	// {0,             XF86XK_AudioRaiseVolume,    spawn, {.v = upvol}},
+	// {0,				XF86XK_MonBrightnessUp,     spawn,	{.v = light_up}},
+	// {0,				XF86XK_MonBrightnessDown,   spawn,	{.v = light_down}},
 
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
