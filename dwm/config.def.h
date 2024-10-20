@@ -1,4 +1,7 @@
 /* See LICENSE file for copyright and license details. */
+#define TERMINAL "st"
+#define TERMCLASS "st"
+#include <X11/XF86keysym.h>
 
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
@@ -7,19 +10,41 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "3270 Nerd Font Mono:style:regular:size=16" };
 static const char dmenufont[]       = "3270 Nerd Font Mono:style:regular:size=16";
-static const char col_gray1[]       = "#222222";
-static const char col_gray2[]       = "#444444";
-static const char col_gray3[]       = "#bbbbbb";
-static const char col_gray4[]       = "#eeeeee";
-static const char col_cyan[]        = "#005577";
+
+static const char black[]       = "#1a1b26";
+static const char white[]       = "#a9b1d6";
+static const char gray2[]       = "#24283b"; // unfocused window border
+static const char gray3[]       = "#414868";
+static const char gray4[]       = "#565f89";
+static const char blue[]        = "#7aa2f7";  // focused window border
+static const char green[]       = "#9ece6a";
+static const char red[]         = "#f7768e";
+static const char orange[]      = "#ff9e64";
+static const char yellow[]      = "#e0af68";
+static const char pink[]        = "#bb9af7";
+static const char col_borderbar[]  = "#1a1b26"; // inner border
+
 static const char *colors[][3]      = {
-	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+    /*                     fg       bg      border */
+    [SchemeNorm]       = { gray3,   black,  gray2 },
+    [SchemeSel]        = { gray4,   blue,   blue  },
+    [SchemeTitle]      = { white,   black,  black }, // active window title
+    [TabSel]           = { blue,    gray2,  black },
+    [TabNorm]          = { gray3,   black,  black },
+    [SchemeTag]        = { gray3,   black,  black },
+    [SchemeTag1]       = { blue,    black,  black },
+    [SchemeTag2]       = { red,     black,  black },
+    [SchemeTag3]       = { orange,  black,  black },
+    [SchemeTag4]       = { green,   black,  black },
+    [SchemeTag5]       = { pink,    black,  black },
+    [SchemeLayout]     = { green,   black,  black },
+    [SchemeBtnPrev]    = { green,   black,  black },
+    [SchemeBtnNext]    = { yellow,  black,  black },
+    [SchemeBtnClose]   = { red,     black,  black },
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+static const char *tags[] = { "1", "2", "3", "4" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -27,8 +52,9 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+	{ "Gimp",        NULL,       NULL,       0,            1,           -1 },
+	{ "Firefox",     NULL,       NULL,       1 << 4,       0,           -1 },
+	{ "st-256color", NULL,       NULL,       0,            0,           -1 },
 };
 
 /* layout(s) */
@@ -57,7 +83,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-h", "28", "-m", dmenumon, NULL };
 static const char *termcmd[]  = { "st", NULL };
 
 static const Key keys[] = {
@@ -90,10 +116,6 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_quotedbl,               2)
 	TAGKEYS(                        XK_apostrophe,             3)
 	TAGKEYS(                        XK_parenleft,              4)
-	TAGKEYS(                        XK_minus,                  5)
-	TAGKEYS(                        XK_egrave,                 6)
-	TAGKEYS(                        XK_underscore,             7)
-	TAGKEYS(                        XK_ccedilla,               8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 };
 
